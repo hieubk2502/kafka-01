@@ -60,7 +60,7 @@ public class ProducerDemoKey {
                     public void onCompletion(RecordMetadata recordMetadata, Exception e) {
                         if (Objects.isNull(e)) {
                             log.info("Received new metadata " + " | " +
-                                    "Key-value: " + key+": "+ value + " | " +
+                                    "Key-value: " + key + ": " + value + " | " +
                                     "Topic: " + recordMetadata.topic() + " | " +
                                     "Partition: " + recordMetadata.partition() + " | " +
                                     "Offset: " + recordMetadata.offset() + " | " +

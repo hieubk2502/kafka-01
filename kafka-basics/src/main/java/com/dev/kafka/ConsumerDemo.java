@@ -41,16 +41,16 @@ public class ConsumerDemo {
         KafkaConsumer<String, String> consumer = new KafkaConsumer<>(properties);
 
         // subcribe to a topic
-         consumer.subscribe(Arrays.asList(topic));
+        consumer.subscribe(Arrays.asList(topic));
 
-         while(true) {
-             log.info("Polling........");
-             ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
+        while (true) {
+            log.info("Polling........");
+            ConsumerRecords<String, String> records = consumer.poll(Duration.ofMillis(1000));
 
-             for (ConsumerRecord<String, String> record : records){
-                 log.info("Key-Value: "+ record.key()+" " + record.value()
-                         + " | " + "Partition: " + record.partition() +" | " + "Offset: " + record.offset() );
-             }
-         }
+            for (ConsumerRecord<String, String> record : records) {
+                log.info("Key-Value: " + record.key() + " " + record.value()
+                        + " | " + "Partition: " + record.partition() + " | " + "Offset: " + record.offset());
+            }
+        }
     }
 }
