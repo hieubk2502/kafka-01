@@ -31,7 +31,7 @@ public class ConsumerDemoWithShutdown {
         properties.setProperty("key.deserializer", StringDeserializer.class.getName());
         properties.setProperty("value.deserializer", StringDeserializer.class.getName());
 
-        String groupId = "myApp";
+        String groupId = "myApp1";
         String topic = "demo_java";
 
         // config for consumber
@@ -72,7 +72,7 @@ public class ConsumerDemoWithShutdown {
 
         try {
             // subscribe to a topic
-            consumer.subscribe(Arrays.asList(topic));
+            consumer.subscribe(Arrays.asList("wikimedia.recentchange"));
 
             while (true) {
                 log.info("Polling........");
