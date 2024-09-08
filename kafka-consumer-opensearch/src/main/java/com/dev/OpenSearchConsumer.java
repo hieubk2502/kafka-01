@@ -18,14 +18,12 @@ import org.apache.kafka.common.serialization.StringDeserializer;
 import org.opensearch.action.bulk.BulkRequest;
 import org.opensearch.action.bulk.BulkResponse;
 import org.opensearch.action.index.IndexRequest;
-import org.opensearch.action.index.IndexResponse;
 import org.opensearch.client.RequestOptions;
 import org.opensearch.client.RestClient;
 import org.opensearch.client.RestHighLevelClient;
 import org.opensearch.client.indices.CreateIndexRequest;
 import org.opensearch.client.indices.GetIndexRequest;
-import org.springframework.http.MediaType;
-import org.springframework.util.StringUtils;
+import org.opensearch.common.xcontent.XContentType;
 
 import java.io.IOException;
 import java.net.URI;
@@ -49,7 +47,7 @@ public class OpenSearchConsumer {
         // extract login information if it exists
         String userInfo = connectUri.getUserInfo();
 
-        if (!StringUtils.hasText(userInfo)) {
+        if (userInfo != null) {
             // REST client without security
             restHighLevelClient = new RestHighLevelClient(RestClient.builder(new HttpHost(connectUri.getHost(), connectUri.getPort(), connectUri.getScheme())));
         } else {
@@ -151,7 +149,7 @@ public class OpenSearchConsumer {
 
                         id = extractId(record.value());
                         IndexRequest indexRequest = new IndexRequest("wikimedia")
-                                .source(record.value(), MediaType.APPLICATION_JSON_VALUE)
+                                .source(record.value(), XContentType.JSON)
                                 .id(id);
                         bulkRequest.add(indexRequest);
 //                    IndexResponse indexResponse = openSearchClient.index(indexRequest, RequestOptions.DEFAULT);
