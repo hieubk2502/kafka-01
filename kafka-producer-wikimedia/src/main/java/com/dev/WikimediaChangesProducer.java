@@ -6,7 +6,6 @@ import com.launchdarkly.eventsource.background.BackgroundEventSource;
 import org.apache.kafka.clients.producer.KafkaProducer;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
-import org.springframework.boot.autoconfigure.cassandra.CassandraProperties;
 
 import java.net.URI;
 import java.util.Properties;
